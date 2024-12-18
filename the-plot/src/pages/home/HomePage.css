@@ -1,0 +1,34 @@
+.home-container {
+  margin: 4rem 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.movies-items {
+  margin: 0;
+  padding: 0 3rem;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 2.5rem;
+  animation: main-content 1s normal both ease-out;
+}
+
+@keyframes main-content {
+  from {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+.home-pagination__container {
+  margin: 2rem 0;
+}

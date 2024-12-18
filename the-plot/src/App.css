@@ -1,42 +1,27 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Style the scrollbar */
+::-webkit-scrollbar {
+  width: 6px; /* Width of the scrollbar */
+  height: 12px; /* Height of the scrollbar (for horizontal) */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Style the track */
+::-webkit-scrollbar-track {
+  background: #203a43; /* Light gray background */
+  border-radius: 6px; /* Rounded corners */
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Style the thumb */
+::-webkit-scrollbar-thumb {
+  background: hwb(0 0% 100%); /* Darker gray */
+  border-radius: 6px; /* Rounded corners */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Add hover effect on the thumb */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker shade on hover */
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+/* Style the corner (optional) */
+::-webkit-scrollbar-corner {
+  background: transparent;
 }

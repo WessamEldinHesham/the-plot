@@ -1,0 +1,30 @@
+.movie-details__container {
+  text-align: center;
+  animation: sliding 1s ease-out;
+  position: relative;
+}
+
+.movie-details__container img {
+  width: 69%;
+  height: 69%;
+  border-radius: 8px;
+}
+
+@keyframes sliding {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* .movei-details-data {
+  background-color: darkgray;
+  position: absolute;
+  top: 0;
+  left: 50%;
+} */

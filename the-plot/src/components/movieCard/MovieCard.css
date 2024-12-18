@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Lobster&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Space+Grotesk:wght@300..700&display=swap");
+
+.movie-card {
+  position: relative;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 6px 6px 10px #121111, -0.7px -0.7px 4px #121111;
+  transform: scale(1);
+  transition: transform 0.4s ease-out, box-shadow 0.4s;
+  max-width: 226px;
+}
+
+.movie-card:hover {
+  box-shadow: 17px 17px 15px #121111, 0px 0px #121111;
+  transform: scale(1.03);
+  transition: transform 0.4s ease-out, box-shadow 0.4s;
+}
+
+.movie-img {
+  width: 226px;
+  height: 339px;
+  border-radius: 6px 6px 0 0;
+}
+
+.movie-dets {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.5rem;
+  text-align: left;
+  /* background: linear-gradient(to left, #28313b, #485461 50%); */
+}
+
+.movie-dets .movie-title,
+.movie-dets .movie-date {
+  margin: 0;
+  font-family: "Space Grotesk", serif;
+  /* font-style: bold; */
+}
+
+.movie-dets .movie-title {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0.4rem 0;
+}
+
+.movie-dets .movie-date {
+  font-size: 12px;
+  font-weight: 200;
+  padding-bottom: 0.2rem;
+}
+
+.movie-rate-container {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  background-color: #2f91fa;
+  color: #ffffff;
+  border-radius: 50%;
+  top: 250px;
+  right: -20px;
+}
+
+.movie-rate {
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "Space Grotesk", serif;
+  margin: auto;
+}
