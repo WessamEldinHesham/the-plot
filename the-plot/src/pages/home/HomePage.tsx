@@ -45,25 +45,39 @@ export default function HomePage() {
   if (searchBarInput === "") {
     if (moviesQuery.isPending) {
       return (
-        <div className="Loading-div-homepage" style={{ textAlign: "center", margin: "4rem auto" }}>
+        <div
+          className="Loading-div-homepage"
+          style={{ textAlign: "center", margin: "4rem auto" }}
+        >
           <Loading />
         </div>
       );
     }
 
     if (moviesQuery.isError) {
-      return <div>Something wrong happed</div>;
+      return (
+        <div className="error-message">
+          <h1>Something went wrong!</h1>
+        </div>
+      );
     }
   } else if (searchBarInput !== "") {
     if (searchQuery.isPending) {
       return (
-        <div className="Loading-div-homepage" style={{ textAlign: "center", margin: "4rem auto" }}>
+        <div
+          className="Loading-div-homepage"
+          style={{ textAlign: "center", margin: "4rem auto" }}
+        >
           <Loading />
         </div>
       );
     }
     if (searchQuery.isError) {
-      return <div>Something wrong happed</div>;
+      return (
+        <div className="error-message">
+          <h1>Something went wrong!</h1>
+        </div>
+      );
     }
   }
 

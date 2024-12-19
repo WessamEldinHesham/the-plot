@@ -6,6 +6,8 @@ import MovieDetails from "../../components/movieDetails/MovieDetails";
 import { getMovie } from "../../utils/http";
 import Loading from "../../components/loading/Loading";
 
+import "../home/HomePage.css";
+
 type RouteParams = {
   id: string;
 };
@@ -19,10 +21,6 @@ export default function DetailsPage() {
     enabled: !!id,
   });
 
-  if (!id) {
-    return <div>Error: ID is missing in the URL</div>;
-  }
-
   if (isLoading) {
     return (
       <div
@@ -35,7 +33,11 @@ export default function DetailsPage() {
   }
 
   if (isError) {
-    return <div>Error fetching movie details</div>;
+    return (
+      <div className="error-message">
+        <h1>Something went wrong!</h1>
+      </div>
+    );
   }
 
   return (

@@ -6,10 +6,11 @@ import { useMoviesCategories } from "../../contexts/NavigationBarContext";
 export default function MoviesCategories({
   moviesCategory,
   handleMoviesCategory,
+  handleClosing,
+  isVisible,
 }: any) {
   const { searchBarInput } = useMoviesCategories();
-  // const [isOpen, setIsOpen] = useState<Boolean>(false);
-  // const [isVisible, setIsVisible] = useState<Boolean>(false);
+
   return (
     <>
       <div className="movies-categs-wrapper">
@@ -57,15 +58,11 @@ export default function MoviesCategories({
         >
           Upcoming
         </button>
-
-        <button
-          className="settings-close-btn"
-          onClick={() => {
-            return;
-          }}
-        >
-          X
-        </button>
+        {isVisible && (
+          <button className="settings-close-btn" onClick={handleClosing}>
+            X
+          </button>
+        )}
       </div>
     </>
   );

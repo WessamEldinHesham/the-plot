@@ -11,6 +11,8 @@ export default function MainHeader() {
   const [searchInput, setSearchInput] = useState<string>("");
   const { moviesCategory, setMoviesCategory, setSearchBarInput } =
     useMoviesCategories();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const navigate = useNavigate();
 
   function handleHomeRouting() {
@@ -27,6 +29,10 @@ export default function MainHeader() {
     setSearchBarInput("");
     setSearchInput("");
     setMoviesCategory(buttonName);
+    setIsOpen(false);
+    setTimeout(() => {
+      setIsVisible(false);
+    }, 350);
   }
 
   function searchHandler(event: React.ChangeEvent<HTMLInputElement> | any) {
@@ -37,6 +43,20 @@ export default function MainHeader() {
     e.preventDefault();
     setSearchBarInput(searchInput);
   };
+
+  function handleOpening() {
+    setIsVisible(true);
+    setTimeout(() => {
+      setIsOpen(true);
+    }, 10);
+  }
+
+  function handleClosing() {
+    setIsOpen(false);
+    setTimeout(() => {
+      setIsVisible(false);
+    }, 350);
+  }
 
   return (
     <>
@@ -137,9 +157,11 @@ export default function MainHeader() {
             <h1 className="main-header-logo" onClick={handleHomeRouting}>
               The Plot
             </h1>
-            <button className="settings-btn">
-              <SettingsLogo />
-            </button>
+            {window.location.pathname === "/" && (
+              <button className="settings-btn" onClick={handleOpening}>
+                <SettingsLogo />
+              </button>
+            )}
           </div>
 
           {window.location.pathname === "/" ? (
@@ -173,13 +195,33 @@ export default function MainHeader() {
           )}
           {window.location.pathname === "/" && (
             <>
-              <div className="moveis-cats-smaller-mobile">
-                <MoviesCategories
-                  handleMoviesCategory={handleMoviesCategory}
-                  moviesCategory={moviesCategory}
-                />
-              </div>
-              <div className="background-drop"></div>
+              {isVisible && (
+                <>
+                  <div
+                    className={`moveis-cats-smaller-mobile ${
+                      isOpen
+                        ? "moveis-cats-smaller-mobile-active"
+                        : "moveis-cats-smaller-mobile-hidden"
+                    }`}
+                  >
+                    <MoviesCategories
+                      handleMoviesCategory={handleMoviesCategory}
+                      moviesCategory={moviesCategory}
+                      handleClosing={handleClosing}
+                      isVisible={isVisible}
+                      isOpen={isOpen}
+                    />
+                  </div>
+                  <div
+                    className={`background-drop ${
+                      isOpen
+                        ? "background-drop-active"
+                        : "background-drop-hidden"
+                    }`}
+                    onClick={handleClosing}
+                  ></div>
+                </>
+              )}
             </>
           )}
         </header>

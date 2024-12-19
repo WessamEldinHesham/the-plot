@@ -40,3 +40,16 @@
   font-size: 60px;
   height: 80vh;
 }
+
+.error-message {
+  width: 99vw;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-message h1 {
+  margin: 0;
+  font-size: 30px;
+}

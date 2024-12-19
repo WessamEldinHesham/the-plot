@@ -123,6 +123,9 @@
 }
 
 @media (max-width: 1475px) {
+  .movie-div-container {
+    margin-top: 3rem;
+  }
   .movie-div {
     flex-direction: column;
     width: 95%;
