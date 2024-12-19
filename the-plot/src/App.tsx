@@ -7,6 +7,7 @@ import DetailsPage from "./pages/detailsPage/DetailsPage";
 import ErrorPage from "./pages/error/ErrorPage";
 
 import "./App.css";
+import NavigationBarContext from "./contexts/NavigationBarContext";
 
 const queryClient = new QueryClient();
 
@@ -25,9 +26,11 @@ const routes = createBrowserRouter([
 function App() {
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={routes} />
-      </QueryClientProvider>
+      <NavigationBarContext>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={routes} />
+        </QueryClientProvider>
+      </NavigationBarContext>
     </>
   );
 }

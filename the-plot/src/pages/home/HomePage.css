@@ -32,3 +32,11 @@
 .home-pagination__container {
   margin: 2rem 0;
 }
+
+.Loading-div-homepage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  height: 80vh;
+}

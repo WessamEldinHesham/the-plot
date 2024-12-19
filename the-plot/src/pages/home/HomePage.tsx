@@ -3,10 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 
 import MovieCard from "../../components/movieCard/MovieCard";
 import PaginationComp from "../../components/pagination/PaginationComp";
-import { getMovies } from "../../utils/http";
+import { getMovies, getSearchedMovies } from "../../utils/http";
 
 import "./HomePage.css";
 import Loading from "../../components/loading/Loading";
+import { useMoviesCategories } from "../../contexts/NavigationBarContext";
 
 interface IMovie {
   adult: boolean;
@@ -26,41 +27,98 @@ interface IMovie {
 }
 
 export default function HomePage() {
+  const { moviesCategory, searchBarInput } = useMoviesCategories();
   const [pageNo, setPageNo] = useState<number>(1);
 
-  const { data, isPending }: any = useQuery({
-    queryKey: ["movies", pageNo],
-    queryFn: () => getMovies(pageNo),
+  const moviesQuery: any = useQuery({
+    queryKey: ["movies", pageNo, moviesCategory],
+    queryFn: () => getMovies(pageNo, moviesCategory),
+    enabled: !!searchBarInput === false,
   });
 
-  if (isPending) {
-    return (
-      <div style={{ textAlign: "center", margin: "4rem auto" }}>
-        <Loading />
-      </div>
-    );
+  const searchQuery: any = useQuery({
+    queryKey: ["seachedMovies", searchBarInput, pageNo],
+    queryFn: () => getSearchedMovies(searchBarInput, pageNo),
+    enabled: !!searchBarInput,
+  });
+
+  if (searchBarInput === "") {
+    if (moviesQuery.isPending) {
+      return (
+        <div className="Loading-div-homepage" style={{ textAlign: "center", margin: "4rem auto" }}>
+          <Loading />
+        </div>
+      );
+    }
+
+    if (moviesQuery.isError) {
+      return <div>Something wrong happed</div>;
+    }
+  } else if (searchBarInput !== "") {
+    if (searchQuery.isPending) {
+      return (
+        <div className="Loading-div-homepage" style={{ textAlign: "center", margin: "4rem auto" }}>
+          <Loading />
+        </div>
+      );
+    }
+    if (searchQuery.isError) {
+      return <div>Something wrong happed</div>;
+    }
   }
 
   return (
     <>
       <div className="home-container">
         <ul className="movies-items">
-          {data?.movies?.map((movie: IMovie) => {
-            return (
-              <li className="" key={movie.id}>
-                <MovieCard movie={movie} />
-              </li>
-            );
-          })}
+          {searchBarInput !== "" ? (
+            <>
+              {searchQuery.data?.movies?.map((movie: IMovie) => {
+                return (
+                  <li className="" key={movie.id}>
+                    <MovieCard movie={movie} />
+                  </li>
+                );
+              })}
+            </>
+          ) : (
+            <>
+              {moviesQuery.data?.movies?.map((movie: IMovie) => {
+                return (
+                  <li className="" key={movie.id}>
+                    <MovieCard movie={movie} />
+                  </li>
+                );
+              })}
+            </>
+          )}
         </ul>
       </div>
-      <div className="home-pagination__container">
-        <PaginationComp
-          pageNo={pageNo}
-          setPageNo={setPageNo}
-          pages={data.pages}
-        />
-      </div>
+      {searchBarInput !== "" ? (
+        <>
+          {searchQuery.data?.pages.length > 0 && (
+            <div className="home-pagination__container">
+              <PaginationComp
+                pageNo={pageNo}
+                setPageNo={setPageNo}
+                pages={searchQuery.data.pages}
+              />
+            </div>
+          )}
+        </>
+      ) : (
+        <>
+          {moviesQuery.data.pages.length > 0 && (
+            <div className="home-pagination__container">
+              <PaginationComp
+                pageNo={pageNo}
+                setPageNo={setPageNo}
+                pages={moviesQuery.data.pages}
+              />
+            </div>
+          )}
+        </>
+      )}
     </>
   );
 }

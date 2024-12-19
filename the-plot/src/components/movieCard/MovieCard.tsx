@@ -41,14 +41,14 @@ export default function MovieCard({ movie }: MovieCardProps) {
         />
         <div className="movie-dets">
           <h3 className="movie-title">{movie?.title}</h3>
-          <p className="movie-date">{movie?.release_date}</p>
-        </div>
-        <div className="movie-rate-container">
-          <p className="movie-rate">
-            {movie?.vote_average == 0
-              ? "NR"
-              : parseFloat(movie?.vote_average.toFixed(1))}
-          </p>
+          <div className="date-rate-div">
+            <p className="movie-date">{movie?.release_date}</p>
+            <p className="movie-rate">
+              {movie?.vote_average == 0
+                ? "NR"
+                : parseFloat(movie?.vote_average.toFixed(1))}
+            </p>
+          </div>
         </div>
       </div>
     </>

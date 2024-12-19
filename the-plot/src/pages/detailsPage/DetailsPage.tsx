@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import MovieDetails from "../../components/movieDetails/MovieDetails";
 import { getMovie } from "../../utils/http";
+import Loading from "../../components/loading/Loading";
 
 type RouteParams = {
   id: string;
@@ -23,7 +24,14 @@ export default function DetailsPage() {
   }
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        className="Loading-div-homepage"
+        style={{ textAlign: "center", margin: "4rem auto" }}
+      >
+        <Loading />
+      </div>
+    );
   }
 
   if (isError) {
@@ -32,7 +40,7 @@ export default function DetailsPage() {
 
   return (
     <div style={{ overflow: "hidden" }}>
-      <MovieDetails movie={data} posterPath={data?.backdrop_path} />
+      <MovieDetails movie={data} />
     </div>
   );
 }

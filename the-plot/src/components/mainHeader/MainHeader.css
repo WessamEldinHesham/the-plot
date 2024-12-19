@@ -1,13 +1,199 @@
 @import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Lobster&family=Space+Grotesk:wght@300..700&display=swap");
 
-.main-header {
-  width: 100%;
-  text-align: center;
+.main-header-container {
+  margin: 1.7rem 5rem;
 }
 
-.main-header h1 {
+.main-header {
+  width: 100%;
+  margin-bottom: 4rem;
+  text-align: center;
+  display: flex;
+  margin: 0;
+  justify-content: space-between;
+  align-items: center;
+}
+.first-mobile-header {
+  display: none;
+}
+.moveis-cats-mobile {
+  display: none;
+}
+.main-header-smaller-mobile-container {
+  display: none;
+}
+
+.main-header-logo {
+  margin: 0;
   font-family: "Lobster", sans-serif;
   font-weight: 400;
   font-style: normal;
   cursor: pointer;
+}
+
+.search-bar-div {
+  width: 40%;
+  background-color: #faf9f6;
+  display: flex;
+  align-items: center;
+  border-radius: 45px;
+  height: 1.8rem;
+  gap: 0.5rem;
+}
+
+.search-bar-input {
+  padding-left: 1rem;
+  width: 80%;
+  border-radius: 45px;
+  background-color: #ffffff;
+  border: none;
+  outline: none;
+  color: #000000;
+  font-size: 16px;
+}
+
+.search-delete-button {
+  cursor: pointer;
+  border-radius: 50%;
+  border: none;
+  width: 28px;
+  min-width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-weight: 300;
+  font-size: 14px;
+  background-color: rgb(185, 182, 182);
+  transition: background-color 0.3s;
+}
+
+.search-delete-button:hover {
+  background-color: #000000;
+  transition: background-color 0.3s;
+}
+
+.search-bar-btn {
+  position: relative;
+  min-width: 100px;
+  height: 100%;
+  font-size: 16px;
+  border: none;
+  border-radius: 45px;
+  cursor: pointer;
+  background: linear-gradient(to top, #317273 30%, #59c2c1);
+  overflow: hidden;
+}
+
+.search-bar-btn::after {
+  position: absolute;
+  content: "";
+  width: 80%;
+  height: 100%;
+  top: 0;
+  left: -100%;
+  border-radius: 4px;
+  background-color: #fff;
+  opacity: 0.2;
+}
+
+.search-bar-btn:hover::after {
+  left: 100%;
+  transition: left 0.2s;
+}
+
+@media (max-width: 1475px) {
+  .main-header-container {
+    margin: 1.7rem 1rem;
+  }
+
+  .main-header {
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .search-bar-div {
+    width: 80%;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .search-delete-button {
+    width: 20px;
+    max-width: 20px;
+    min-width: 20px;
+    height: 20px;
+  }
+  .search-bar-btn {
+    min-width: 80px;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 880px) and (max-width: 1475px) {
+  .main-header-container {
+    display: none;
+  }
+  .main-header-movile {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .first-mobile-header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .moveis-cats-mobile {
+    display: flex;
+    justify-content: center;
+  }
+  .search-bar-div {
+    width: 50%;
+  }
+}
+
+@media (min-width: 670px) and (max-width: 880px) {
+  .search-bar-div {
+    width: 80%;
+  }
+}
+
+@media (max-width: 704px) {
+  .main-header-container {
+    display: none;
+  }
+  .main-header-smaller-mobile-container {
+    display: flex;
+  }
+  .main-header-smaller-movile {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+  .main-header-smaller-mobile-logo-settings-div {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .settings-btn {
+    background: none;
+    border: none;
+  }
+  .moveis-cats-smaller-mobile {
+    display: flex;
+    z-index: 4;
+  }
+  .background-drop {
+    position: fixed;
+    background-color: black;
+    opacity: 0.3;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    height: 100vh;
+    width: 100vw;
+  }
 }

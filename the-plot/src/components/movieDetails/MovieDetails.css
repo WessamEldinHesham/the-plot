@@ -1,13 +1,113 @@
-.movie-details__container {
-  text-align: center;
-  animation: sliding 1s ease-out;
-  position: relative;
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Lobster&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Space+Grotesk:wght@300..700&display=swap");
+
+.movie-div-container {
+  width: 100%;
+  margin: 0 auto;
+  animation: sliding 0.6s;
 }
 
-.movie-details__container img {
-  width: 69%;
-  height: 69%;
-  border-radius: 8px;
+.movie-div {
+  width: 65%;
+  margin: 0 auto;
+  display: flex;
+  border-radius: 10px;
+  box-shadow: 6px 6px 10px #121111, -0.7px -0.7px 4px #121111;
+}
+
+.movie-det-img {
+  width: 400px;
+  height: 600px;
+  border-radius: 10px 0 0 10px;
+}
+
+.movie-data-div {
+  padding: 1rem 2rem;
+  font-family: "Exo 2", serif;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.movie-detail-title {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.movei-tagline {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.movie-genre-date-div {
+  display: flex;
+  gap: 3rem;
+}
+
+.movie-genre-div {
+  display: flex;
+  gap: 0.4rem;
+  font-size: 18px;
+}
+
+.movie-genre {
+  margin: 0;
+  font-weight: 200;
+}
+
+.movie-dets-date {
+  margin: 0;
+}
+
+.movie-overview {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.movie-revenue-runtime-div {
+  display: flex;
+  gap: 3rem;
+  font: 18px;
+  margin: 0;
+}
+
+.movie-runtime,
+.movie-revenue {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.movie-runtime span,
+.movie-revenue span {
+  padding: 0 0.4rem;
+  color: #317273;
+}
+
+.movie-url {
+  width: 40%;
+  margin: 1rem 0;
+  padding: 0.4rem 0;
+  background: linear-gradient(to top, #317273 30%, #59c2c1);
+  border-radius: 45px;
+  border: none;
+  cursor: pointer;
+  filter: none;
+  transition: filter 0.4s;
+}
+
+.movie-url a {
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+.movie-url:hover {
+  filter: drop-shadow(0 0 1em #59c2c1);
+  transition: all 0.4s;
 }
 
 @keyframes sliding {
@@ -22,9 +122,40 @@
   }
 }
 
-/* .movei-details-data {
-  background-color: darkgray;
-  position: absolute;
-  top: 0;
-  left: 50%;
-} */
+@media (max-width: 1475px) {
+  .movie-div {
+    flex-direction: column;
+    width: 95%;
+  }
+
+  .movie-img-div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .movie-det-img {
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+    height: calc(90% / (2 / 3));
+  }
+
+  .movie-data-div {
+    padding: 1rem;
+  }
+
+  .movie-dets-date,
+  .movie-overview {
+    font-size: 16px;
+  }
+
+  .movie-overview {
+    font-size: 16px;
+  }
+
+  .movie-genre,
+  .movie-runtime,
+  .movie-revenue {
+    font-size: 14px;
+  }
+}

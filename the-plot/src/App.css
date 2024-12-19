@@ -1,27 +1,22 @@
-/* Style the scrollbar */
 ::-webkit-scrollbar {
-  width: 6px; /* Width of the scrollbar */
-  height: 12px; /* Height of the scrollbar (for horizontal) */
+  width: 6px;
+  height: 12px;
 }
 
-/* Style the track */
 ::-webkit-scrollbar-track {
-  background: #203a43; /* Light gray background */
-  border-radius: 6px; /* Rounded corners */
+  background: #ffffff;
+  border-radius: 6px;
 }
 
-/* Style the thumb */
 ::-webkit-scrollbar-thumb {
-  background: hwb(0 0% 100%); /* Darker gray */
-  border-radius: 6px; /* Rounded corners */
+  background: #59c2c1;
+  border-radius: 6px;
 }
 
-/* Add hover effect on the thumb */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Darker shade on hover */
+  background: #555;
 }
 
-/* Style the corner (optional) */
 ::-webkit-scrollbar-corner {
   background: transparent;
 }

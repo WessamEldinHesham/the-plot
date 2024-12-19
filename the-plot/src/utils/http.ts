@@ -17,9 +17,9 @@ interface IMovie {
   vote_count: number;
 }
 
-export async function getMovies(pageNo: number) {
+export async function getMovies(pageNo: number, moviesCategory: string) {
   const request = await fetch(
-    `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${pageNo}`,
+    `https://api.themoviedb.org/3/movie/${moviesCategory}?language=en-US&page=${pageNo}`,
     {
       method: "GET",
       headers: {
@@ -60,4 +60,31 @@ export async function getMovie(id: string) {
   }
   const response = await request.json()
   return response
+}
+
+export async function getSearchedMovies(name: string, pageNo: number) {
+  const request = await fetch(`https://api.themoviedb.org/3/search/movie?query=${name}&include_adult=false&language=en-US&page=${pageNo}`, {
+    method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NWVjZDMzYzViYjlmN2E1MDQ2NzAwYWVkMzkzZWEzZiIsIm5iZiI6MTczNDI3MDYyOC4zMTIsInN1YiI6IjY3NWVkZWE0OTZjZmRkYmYxOWNjYjU0YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xDc1bTdYMpdr4fW8ZZzsR11LHu1ZpfSHvKmczQl6lbs'
+  }
+  });
+
+  const response = await request.json();
+
+  const numberOfPages: number[] = Array.from(
+    { length: response.total_pages },
+    (_, i) => i + 1
+  );
+
+  const moviesList = response.results.map((movie: IMovie) => {
+    if(movie.release_date) {
+      const formattedReleaseDate: string = convertDate(movie.release_date)
+      return { ...movie, release_date: formattedReleaseDate };
+    }
+    return {...movie, release_date: "Not Documented"}
+  });
+
+  return { movies: moviesList, pages: numberOfPages };
 }

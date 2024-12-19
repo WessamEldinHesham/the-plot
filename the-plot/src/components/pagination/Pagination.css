@@ -6,6 +6,7 @@
   display: flex;
   justify-content: center;
   gap: 0.2rem;
+  padding: 0;
 }
 
 .pagination-page {
@@ -39,4 +40,103 @@
   padding: 0.5rem 1rem;
   display: flex;
   background-color: #1a1a1a;
+}
+
+.first-page,
+.backward-page,
+.forward-page,
+.last-page {
+  position: relative;
+}
+
+.first-page::after {
+  position: absolute;
+  content: "First Page";
+  width: 90px;
+  height: 30px;
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  top: -40px;
+  left: -25px;
+  visibility: hidden;
+}
+
+.first-page:hover::after {
+  visibility: visible;
+}
+
+.backward-page::after {
+  position: absolute;
+  content: "Prev Page";
+  width: 90px;
+  height: 30px;
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  top: -40px;
+  left: -25px;
+  visibility: hidden;
+}
+
+.backward-page:hover::after {
+  visibility: visible;
+}
+
+.forward-page::after {
+  position: absolute;
+  content: "Next Page";
+  width: 90px;
+  height: 30px;
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  top: -40px;
+  left: -25px;
+  visibility: hidden;
+}
+
+.forward-page:hover::after {
+  visibility: visible;
+}
+
+.last-page::after {
+  position: absolute;
+  content: "Last Page";
+  width: 90px;
+  height: 30px;
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  top: -40px;
+  left: -25px;
+  visibility: hidden;
+}
+
+.last-page:hover::after {
+  visibility: visible;
 }
