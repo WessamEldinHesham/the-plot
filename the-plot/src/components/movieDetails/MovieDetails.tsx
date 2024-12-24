@@ -1,6 +1,6 @@
 import React from "react";
 
-import { convertDate } from "../../utils/helperFunctions";
+import { convertDate, roundedRating } from "../../utils/helperFunctions";
 
 import "./MovieDetails.css";
 
@@ -57,11 +57,19 @@ export default function MovieDetails({ movie }: any) {
                 Revenue <span>{movie.revenue}</span>
               </p>
             </div>
-            <button className="movie-url">
-              <a href={movie.homepage} target="_blank">
-                Watch
+            <p className="movie-rating">
+              Rating:{" "}
+              <span>
+                {movie?.vote_average == 0
+                  ? "NR"
+                  : roundedRating(movie?.vote_average)}
+              </span>
+            </p>
+            {movie.homepage && (
+              <a href={movie.homepage} target="_blank" className="movie-url">
+                Watch Now
               </a>
-            </button>
+            )}
           </div>
         </div>
       </div>

@@ -9,13 +9,14 @@ import SettingsLogo from "../settingsLogo/SettingsLogo";
 
 export default function MainHeader() {
   const [searchInput, setSearchInput] = useState<string>("");
-  const { moviesCategory, setMoviesCategory, setSearchBarInput } =
+  const { moviesCategory, setMoviesCategory, setSearchBarInput, setPageNo } =
     useMoviesCategories();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const navigate = useNavigate();
 
   function handleHomeRouting() {
+    setPageNo(1);
     setSearchInput("");
     setSearchBarInput("");
     setMoviesCategory("now_playing");
@@ -26,6 +27,7 @@ export default function MainHeader() {
     event: React.MouseEvent<HTMLButtonElement> | any
   ) {
     const buttonName: string = event.target.value;
+    setPageNo(1);
     setSearchBarInput("");
     setSearchInput("");
     setMoviesCategory(buttonName);
@@ -58,6 +60,10 @@ export default function MainHeader() {
     }, 350);
   }
 
+  function handleBack() {
+    navigate("/");
+  }
+
   return (
     <>
       <div className="main-header-container">
@@ -65,6 +71,11 @@ export default function MainHeader() {
           <h1 className="main-header-logo" onClick={handleHomeRouting}>
             The Plot
           </h1>
+          {window.location.pathname !== "/" && (
+            <button className="main-header-bk-btn" onClick={handleBack}>
+              Back
+            </button>
+          )}
 
           {window.location.pathname === "/" ? (
             <>
@@ -111,6 +122,11 @@ export default function MainHeader() {
             <h1 className="main-header-logo" onClick={handleHomeRouting}>
               The Plot
             </h1>
+            {window.location.pathname !== "/" && (
+              <button className="main-header-bk-btn" onClick={handleBack}>
+                Back
+              </button>
+            )}
             {window.location.pathname === "/" ? (
               <form onSubmit={handleSubmit} className="search-bar-div">
                 <input
@@ -157,6 +173,11 @@ export default function MainHeader() {
             <h1 className="main-header-logo" onClick={handleHomeRouting}>
               The Plot
             </h1>
+            {window.location.pathname !== "/" && (
+              <button className="main-header-bk-btn" onClick={handleBack}>
+                Back
+              </button>
+            )}
             {window.location.pathname === "/" && (
               <button className="settings-btn" onClick={handleOpening}>
                 <SettingsLogo />

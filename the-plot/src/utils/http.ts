@@ -36,7 +36,7 @@ export async function getMovies(pageNo: number, moviesCategory: string) {
 
   const response = await request.json();
   const numberOfPages: number[] = Array.from(
-    { length: response.total_pages },
+    { length: Math.min(response.total_pages, 500) },
     (_, i) => i + 1
   );
   const moviesList = response.results.map((movie: IMovie) => {
@@ -74,7 +74,7 @@ export async function getSearchedMovies(name: string, pageNo: number) {
   const response = await request.json();
 
   const numberOfPages: number[] = Array.from(
-    { length: response.total_pages },
+    { length: Math.min(response.total_pages, 500) },
     (_, i) => i + 1
   );
 

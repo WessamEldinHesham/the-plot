@@ -16,6 +16,7 @@ export default function NavigationBarContext({
 }) {
   const [moviesCategory, setMoviesCategory] = useState<string>("now_playing");
   const [searchBarInput, setSearchBarInput] = useState<string>("");
+  const [pageNo, setPageNo] = useState<number>(1);
 
   return (
     <MoviesCategories.Provider
@@ -24,6 +25,8 @@ export default function NavigationBarContext({
         setMoviesCategory,
         searchBarInput,
         setSearchBarInput,
+        pageNo,
+        setPageNo
       }}
     >
       {children}

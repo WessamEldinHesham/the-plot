@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import MovieCard from "../../components/movieCard/MovieCard";
@@ -27,8 +27,7 @@ interface IMovie {
 }
 
 export default function HomePage() {
-  const { moviesCategory, searchBarInput } = useMoviesCategories();
-  const [pageNo, setPageNo] = useState<number>(1);
+  const { moviesCategory, searchBarInput, pageNo } = useMoviesCategories();
 
   const moviesQuery: any = useQuery({
     queryKey: ["movies", pageNo, moviesCategory],
@@ -86,15 +85,19 @@ export default function HomePage() {
       <div className="home-container">
         <ul className="movies-items">
           {searchBarInput !== "" ? (
-            <>
-              {searchQuery.data?.movies?.map((movie: IMovie) => {
-                return (
-                  <li className="" key={movie.id}>
-                    <MovieCard movie={movie} />
-                  </li>
-                );
-              })}
-            </>
+            searchQuery.data.movies.length > 0 ? (
+              <>
+                {searchQuery.data?.movies?.map((movie: IMovie) => {
+                  return (
+                    <li className="" key={movie.id}>
+                      <MovieCard movie={movie} />
+                    </li>
+                  );
+                })}
+              </>
+            ) : (
+              <h1 className="movie-not-found">Movie not found</h1>
+            )
           ) : (
             <>
               {moviesQuery.data?.movies?.map((movie: IMovie) => {
@@ -110,25 +113,18 @@ export default function HomePage() {
       </div>
       {searchBarInput !== "" ? (
         <>
-          {searchQuery.data?.pages.length > 0 && (
-            <div className="home-pagination__container">
-              <PaginationComp
-                pageNo={pageNo}
-                setPageNo={setPageNo}
-                pages={searchQuery.data.pages}
-              />
-            </div>
-          )}
+          {searchQuery.data?.pages.length > 0 &&
+            searchQuery.data?.movies.length > 0 && (
+              <div className="home-pagination__container">
+                <PaginationComp pages={searchQuery.data.pages} />
+              </div>
+            )}
         </>
       ) : (
         <>
           {moviesQuery.data.pages.length > 0 && (
             <div className="home-pagination__container">
-              <PaginationComp
-                pageNo={pageNo}
-                setPageNo={setPageNo}
-                pages={moviesQuery.data.pages}
-              />
+              <PaginationComp pages={moviesQuery.data.pages} />
             </div>
           )}
         </>

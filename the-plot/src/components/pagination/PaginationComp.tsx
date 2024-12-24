@@ -1,18 +1,15 @@
 import React from "react";
 
 import "./Pagination.css";
+import { useMoviesCategories } from "../../contexts/NavigationBarContext";
 
 interface IPaginationProps {
   pages: number[];
-  pageNo: number;
-  setPageNo: any;
 }
 
-export default function PaginationComp({
-  pages,
-  pageNo,
-  setPageNo,
-}: IPaginationProps) {
+export default function PaginationComp({ pages }: IPaginationProps) {
+  const { pageNo, setPageNo } = useMoviesCategories();
+
   function paginationHandler(event: React.MouseEvent<HTMLButtonElement> | any) {
     if (pageNo !== event.target.value) {
       const selectedPage = event.target.value;
@@ -24,6 +21,8 @@ export default function PaginationComp({
       setPageNo(selectedPage);
     }
   }
+
+  console.log(pages);
 
   return (
     <div className="pagination-wrapper">

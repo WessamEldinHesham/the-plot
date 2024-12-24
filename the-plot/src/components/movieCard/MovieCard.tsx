@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+import { roundedRating } from "../../utils/helperFunctions";
+
 import "./MovieCard.css";
 
 interface IMovie {
@@ -28,6 +30,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
   const navigate = useNavigate();
 
   function movieHandle() {
+    
     navigate(`movieDetails/${movie.id}`);
   }
 
@@ -46,7 +49,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
             <p className="movie-rate">
               {movie?.vote_average == 0
                 ? "NR"
-                : parseFloat(movie?.vote_average.toFixed(1))}
+                : roundedRating(movie?.vote_average)}
             </p>
           </div>
         </div>
